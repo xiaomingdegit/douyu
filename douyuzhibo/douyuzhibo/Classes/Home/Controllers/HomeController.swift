@@ -8,18 +8,53 @@
 
 import UIKit
 
-class HomeController: UIViewController {
+private let kPageTitleH: CGFloat = 40
 
+class HomeController: UIViewController {
+    //懒加载pageTitleView
+    private lazy var pageTitleView = { () -> PageTitleView in
+        let rect = CGRect(x: 0, y: kStartBarH + kNavigationH, width: kScreenW, height: kPageTitleH)
+        let titles = ["推荐", "游戏", "娱乐", "趣玩"]
+        let pageTitleView = PageTitleView(frame: rect, titles: titles)
+        pageTitleView.delegate = self
+        return pageTitleView
+    }()
+    //懒加载pageContentView
+    private lazy var pageContentView = {[weak self] ()->PageContentView in
+        let pageContentViewY = kStartBarH + kNavigationH + kPageTitleH
+        let rect = CGRect(x: 0, y:pageContentViewY , width: kScreenW, height: kScreenH - pageContentViewY)
+        
+        var viewControllers = [UIViewController]()
+        for _ in 0..<4 {
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = UIColor(
+                red: CGFloat(arc4random_uniform(255)) / CGFloat(255),
+                green: CGFloat(arc4random_uniform(255)) / CGFloat(255),
+                blue: CGFloat(arc4random_uniform(255)) / CGFloat(255),
+                alpha: CGFloat(arc4random_uniform(255)) / CGFloat(255))
+            viewControllers.append(viewController)
+        }
+        
+        let pageContentView = PageContentView(frame: rect, childViewControllers: viewControllers, parentViewController: self)
+        return pageContentView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
     }
 }
+
 //设置UI界面
 extension HomeController{
     private func setUpUI() {
+        automaticallyAdjustsScrollViewInsets = false
         //设置导航栏
         setNavigation()
+        //设置pageTitleView
+        view.addSubview(pageTitleView)
+        //设置pageContentView
+        view.addSubview(pageContentView)
     }
     
     private func setNavigation(){
@@ -58,5 +93,11 @@ extension HomeController{
     //设置historyBtnClick点击事件
     @objc private func historyBtnClick(){
         print("history")
+    }
+}
+
+extension HomeController: PageTitleViewDelegate{
+    func pageTitleView(pageTitleView: PageTitleView, selectindex: Int) {
+        pageContentView.setCurrentIndex(selectIndex: selectindex)
     }
 }
