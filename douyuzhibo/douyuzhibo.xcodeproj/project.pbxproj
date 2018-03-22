@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01203F812062A1A50079973F /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01203F802062A1A50079973F /* UIBarButtonItem+Extension.swift */; };
 		013CBED7206284BE00143BB5 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CBEBE206284BE00143BB5 /* HomeController.swift */; };
 		013CBED8206284BE00143BB5 /* FollowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CBEC4206284BE00143BB5 /* FollowController.swift */; };
 		013CBED9206284BE00143BB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CBEC7206284BE00143BB5 /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01203F802062A1A50079973F /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		013CBEBE206284BE00143BB5 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		013CBEC4206284BE00143BB5 /* FollowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowController.swift; sourceTree = "<group>"; };
 		013CBEC7206284BE00143BB5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				014BF3A820628BCB00B09556 /* Bundle+Extension.swift */,
+				01203F802062A1A50079973F /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01203F812062A1A50079973F /* UIBarButtonItem+Extension.swift in Sources */,
 				013CBED9206284BE00143BB5 /* AppDelegate.swift in Sources */,
 				014BF3A920628BCB00B09556 /* Bundle+Extension.swift in Sources */,
 				013CBED8206284BE00143BB5 /* FollowController.swift in Sources */,

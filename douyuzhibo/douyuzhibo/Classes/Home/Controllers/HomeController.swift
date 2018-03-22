@@ -12,24 +12,51 @@ class HomeController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUpUI()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+//设置UI界面
+extension HomeController{
+    private func setUpUI() {
+        //设置导航栏
+        setNavigation()
     }
     
+    private func setNavigation(){
+        //设置斗鱼按钮
+        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo", self, action: #selector(douyuBtnClick), for: .touchUpInside)
 
-    /*
-    // MARK: - Navigation
+        //设置搜索按钮
+        let searchItem = UIBarButtonItem(imageName: "Image_search", selectImageName: "Image_search_click", size: CGSize(width: 40, height: 40), self, action: #selector(searchBtnClick), for: .touchUpInside)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        //设置扫码按钮
+        let scanItem = UIBarButtonItem(imageName: "Image_scan", selectImageName: "Image_scan_click", size: CGSize(width: 40, height: 40), self, action: #selector(scanBtnClick), for: .touchUpInside)
+        
+        //设置历史按钮
+        let historyItem = UIBarButtonItem(imageName: "Image_history", selectImageName: "Image_history_click", size: CGSize(width: 40, height: 40), self, action: #selector(historyBtnClick), for: .touchUpInside)
+
+        navigationItem.rightBarButtonItems = [searchItem, scanItem, historyItem]
     }
-    */
+}
 
+extension HomeController{
+    //设置douyuButton点击事件
+    @objc private func douyuBtnClick(){
+        print("刷新主界面")
+    }
+    
+    //设置seatchBtnClick点击事件
+    @objc private func searchBtnClick(){
+        print("seatchBtnClick")
+    }
+    
+    //设置sacnButClick点击事件
+    @objc private func scanBtnClick(){
+        print("sacn")
+    }
+    
+    //设置historyBtnClick点击事件
+    @objc private func historyBtnClick(){
+        print("history")
+    }
 }
