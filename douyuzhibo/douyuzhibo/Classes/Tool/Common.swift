@@ -7,8 +7,11 @@
 //
 
 import UIKit
-
+//屏幕的高度
 let kScreenH = UIScreen.main.bounds.size.height
+//屏幕的宽度
 let kScreenW = UIScreen.main.bounds.size.width
+//导航条高度
 let kNavigationH = CGFloat(44)
+//状态栏高度
 let kStartBarH = CGFloat(44)

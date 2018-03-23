@@ -13,6 +13,8 @@ protocol PageTitleViewDelegate: class {
 }
 
 private let kScrollLineH: CGFloat = 2
+private let kNormalColor: (red: CGFloat, green:CGFloat, blue:CGFloat) = (85.0/255.0,85.0/255.0,85.0/255.0)
+private let kSelectColor: (red: CGFloat, green:CGFloat, blue:CGFloat) = (255.0/255.0,128.0/255,0.0)
 
 class PageTitleView: UIView {
     //设置代理
@@ -58,9 +60,10 @@ class PageTitleView: UIView {
     }
 }
 
+//设置UI
 extension PageTitleView {
     private func setupUI(){
-        backgroundColor = UIColor.lightGray
+        backgroundColor = UIColor.black
         //设置scrollView
         addSubview(scrollView)
         //设置titles
@@ -68,7 +71,7 @@ extension PageTitleView {
         //设置scrollLine
         addSubview(scrollLine)
         //设置第一个lable为选择状态
-        lables.first?.textColor = UIColor.orange
+        lables.first?.textColor = UIColor(red: kSelectColor.red, green: kSelectColor.green, blue: kSelectColor.blue, alpha: 1)
     }
     private func setTitle(){
         let labelY: CGFloat = 0
@@ -80,6 +83,7 @@ extension PageTitleView {
             
             //设置lable值
             lable.text = title
+            lable.textColor = UIColor(red: kNormalColor.red, green: kNormalColor.green, blue: kNormalColor.blue, alpha: 1)
             lable.tag = index
             lable.textAlignment = .center
             
@@ -87,7 +91,7 @@ extension PageTitleView {
             lable.isUserInteractionEnabled = true
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapClick(ges:)))
             lable.addGestureRecognizer(tap)
-            
+            //将lable添加到scrollView中
             scrollView.addSubview(lable)
             lables.append(lable)
         }
@@ -101,10 +105,10 @@ extension PageTitleView{
         guard let currentlable = ges.view as? UILabel else{
             return
         }
-        currentlable.textColor = UIColor.orange
+        currentlable.textColor = UIColor(red: kSelectColor.red, green: kSelectColor.green, blue: kSelectColor.blue, alpha: 1)
         //移除之前选中lable颜色
         let oldLable = lables[selectLableIndex]
-        oldLable.textColor = UIColor.black
+        oldLable.textColor = UIColor(red: kNormalColor.red, green: kNormalColor.green, blue: kNormalColor.blue, alpha: 1)
         //记录当前选中lable的index
         selectLableIndex = currentlable.tag
         
@@ -117,3 +121,25 @@ extension PageTitleView{
         delegate?.pageTitleView(pageTitleView: self, selectindex: selectLableIndex)
     }
 }
+
+extension PageTitleView{
+    func changeSelectTitle(progess: CGFloat, oldIndex: Int, newIndex: Int){
+        //获取旧的lable
+        let oldLable = lables[oldIndex]
+        //获取新的lable
+        let newLable = lables[newIndex]
+        //根据progress设置scrollLine的x的值
+        scrollLine.frame.origin.x = oldLable.frame.origin.x + lableWidth * progess
+        
+        
+        //获取progress的绝对值
+        let fabsProgress:CGFloat = CGFloat(fabs(progess))
+        //获取color变化的范围
+        let progressColor: (red: CGFloat, green: CGFloat, blue: CGFloat) = (kSelectColor.red - kNormalColor.red, kSelectColor.green - kNormalColor.green, kSelectColor.blue - kNormalColor.blue)
+       //设置渐变颜色 下面赋值顺序不能变
+        newLable.textColor = UIColor(red: (kNormalColor.red + progressColor.red * fabsProgress), green: (kNormalColor.green + progressColor.green * fabsProgress), blue: (kNormalColor.blue + progressColor.blue * fabsProgress), alpha: 1)
+        
+        oldLable.textColor = UIColor(red: kSelectColor.red - progressColor.red * fabsProgress, green: kSelectColor.green - progressColor.green * fabsProgress, blue: kSelectColor.blue - progressColor.blue * fabsProgress, alpha: 1)
+        }
+}
+

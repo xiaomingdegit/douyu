@@ -27,15 +27,12 @@ class HomeController: UIViewController {
         var viewControllers = [UIViewController]()
         for _ in 0..<4 {
             let viewController = UIViewController()
-            viewController.view.backgroundColor = UIColor(
-                red: CGFloat(arc4random_uniform(255)) / CGFloat(255),
-                green: CGFloat(arc4random_uniform(255)) / CGFloat(255),
-                blue: CGFloat(arc4random_uniform(255)) / CGFloat(255),
-                alpha: CGFloat(arc4random_uniform(255)) / CGFloat(255))
+            viewController.view.backgroundColor = UIColor.randomColor
             viewControllers.append(viewController)
         }
         
         let pageContentView = PageContentView(frame: rect, childViewControllers: viewControllers, parentViewController: self)
+        pageContentView.delegate = self
         return pageContentView
     }()
     
@@ -73,7 +70,7 @@ extension HomeController{
         navigationItem.rightBarButtonItems = [searchItem, scanItem, historyItem]
     }
 }
-
+//响应导航栏按钮点击事件
 extension HomeController{
     //设置douyuButton点击事件
     @objc private func douyuBtnClick(){
@@ -99,5 +96,11 @@ extension HomeController{
 extension HomeController: PageTitleViewDelegate{
     func pageTitleView(pageTitleView: PageTitleView, selectindex: Int) {
         pageContentView.setCurrentIndex(selectIndex: selectindex)
+    }
+}
+
+extension HomeController: PageContentViewDelegate{
+    func pageContentView(pageContentView: PageContentView, progress: CGFloat, oldIndex: Int, newIndex: Int) {
+        pageTitleView.changeSelectTitle(progess: progress, oldIndex: oldIndex, newIndex: newIndex)
     }
 }
