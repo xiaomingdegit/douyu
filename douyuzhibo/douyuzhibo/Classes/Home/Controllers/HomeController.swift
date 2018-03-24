@@ -22,10 +22,12 @@ class HomeController: UIViewController {
     //懒加载pageContentView
     private lazy var pageContentView = {[weak self] ()->PageContentView in
         let pageContentViewY = kStartBarH + kNavigationH + kPageTitleH
-        let rect = CGRect(x: 0, y:pageContentViewY , width: kScreenW, height: kScreenH - pageContentViewY)
+        let rect = CGRect(x: 0, y:pageContentViewY , width: kScreenW, height: kScreenH - pageContentViewY - kTabbarH)
         
         var viewControllers = [UIViewController]()
-        for _ in 0..<4 {
+        var viewController = RecommendController()
+        viewControllers.append(viewController)
+        for _ in 0..<3 {
             let viewController = UIViewController()
             viewController.view.backgroundColor = UIColor.randomColor
             viewControllers.append(viewController)

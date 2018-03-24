@@ -15,3 +15,5 @@ let kScreenW = UIScreen.main.bounds.size.width
 let kNavigationH = CGFloat(44)
 //状态栏高度
 let kStartBarH = CGFloat(44)
+//tabbar高度
+let kTabbarH = CGFloat(44)

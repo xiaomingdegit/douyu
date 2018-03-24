@@ -136,8 +136,8 @@ extension PageContentView: UICollectionViewDelegate{
 extension PageContentView{
     //通过index设置collectionView的偏移量
     func setCurrentIndex(selectIndex: Int) {
+        isShieldDelegate = true
         let offsetX = CGFloat(selectIndex) * self.frame.size.width
         collectionView.contentOffset = CGPoint(x: offsetX, y: 0)
-        isShieldDelegate = true
     }
 }

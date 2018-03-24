@@ -63,7 +63,7 @@ class PageTitleView: UIView {
 //设置UI
 extension PageTitleView {
     private func setupUI(){
-        backgroundColor = UIColor.black
+        backgroundColor = UIColor.lightGray
         //设置scrollView
         addSubview(scrollView)
         //设置titles
