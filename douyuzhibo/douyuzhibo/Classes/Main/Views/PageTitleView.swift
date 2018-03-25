@@ -140,6 +140,7 @@ extension PageTitleView{
         newLable.textColor = UIColor(red: (kNormalColor.red + progressColor.red * fabsProgress), green: (kNormalColor.green + progressColor.green * fabsProgress), blue: (kNormalColor.blue + progressColor.blue * fabsProgress), alpha: 1)
         
         oldLable.textColor = UIColor(red: kSelectColor.red - progressColor.red * fabsProgress, green: kSelectColor.green - progressColor.green * fabsProgress, blue: kSelectColor.blue - progressColor.blue * fabsProgress, alpha: 1)
+        selectLableIndex = newIndex
         }
 }
 
