@@ -123,24 +123,25 @@ extension PageTitleView{
 }
 
 extension PageTitleView{
-    func changeSelectTitle(progess: CGFloat, oldIndex: Int, newIndex: Int){
+    func changeSelectTitle(progress: CGFloat, oldIndex: Int, newIndex: Int){
+        //将当前选中lable设置为新的lable
+        selectLableIndex = newIndex
+        print(selectLableIndex)
         //获取旧的lable
         let oldLable = lables[oldIndex]
         //获取新的lable
         let newLable = lables[newIndex]
-        //根据progress设置scrollLine的x的值
-        scrollLine.frame.origin.x = oldLable.frame.origin.x + lableWidth * progess
-        
-        
-        //获取progress的绝对值
-        let fabsProgress:CGFloat = CGFloat(fabs(progess))
+        if oldIndex < newIndex {
+            //根据progress设置scrollLine的x的值
+            scrollLine.frame.origin.x = oldLable.frame.origin.x + lableWidth * progress
+        }else{
+            scrollLine.frame.origin.x = oldLable.frame.origin.x - lableWidth * progress
+        }
         //获取color变化的范围
         let progressColor: (red: CGFloat, green: CGFloat, blue: CGFloat) = (kSelectColor.red - kNormalColor.red, kSelectColor.green - kNormalColor.green, kSelectColor.blue - kNormalColor.blue)
-       //设置渐变颜色 下面赋值顺序不能变
-        newLable.textColor = UIColor(red: (kNormalColor.red + progressColor.red * fabsProgress), green: (kNormalColor.green + progressColor.green * fabsProgress), blue: (kNormalColor.blue + progressColor.blue * fabsProgress), alpha: 1)
-        
-        oldLable.textColor = UIColor(red: kSelectColor.red - progressColor.red * fabsProgress, green: kSelectColor.green - progressColor.green * fabsProgress, blue: kSelectColor.blue - progressColor.blue * fabsProgress, alpha: 1)
-        selectLableIndex = newIndex
-        }
+        //设置渐变颜色 下面赋值顺序不能变
+        newLable.textColor = UIColor(red: (kNormalColor.red + progressColor.red * progress), green: (kNormalColor.green + progressColor.green * progress), blue: (kNormalColor.blue + progressColor.blue * progress), alpha: 1)
+        oldLable.textColor = UIColor(red: kSelectColor.red - progressColor.red * progress, green: kSelectColor.green - progressColor.green * progress, blue: kSelectColor.blue - progressColor.blue * progress, alpha: 1)
+    }
 }
 

@@ -103,6 +103,6 @@ extension HomeController: PageTitleViewDelegate{
 
 extension HomeController: PageContentViewDelegate{
     func pageContentView(pageContentView: PageContentView, progress: CGFloat, oldIndex: Int, newIndex: Int) {
-        pageTitleView.changeSelectTitle(progess: progress, oldIndex: oldIndex, newIndex: newIndex)
+        pageTitleView.changeSelectTitle(progress: progress, oldIndex: oldIndex, newIndex: newIndex)
     }
 }

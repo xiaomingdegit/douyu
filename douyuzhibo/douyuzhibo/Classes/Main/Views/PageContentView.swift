@@ -18,7 +18,7 @@ let collectionViewID = "collectionViewID"
 
 class PageContentView: UIView {
     //保存当前滑动开始前偏移量
-    private var startOffSet: CGFloat!
+    private var startOffSet: CGFloat = 0
     
     //代理
     var delegate: PageContentViewDelegate?
@@ -116,17 +116,32 @@ extension PageContentView: UICollectionViewDelegate{
         let viewWidth = frame.width
         
         //滑动进度
-        let progress = (currentOffSet - startOffSet) / viewWidth
+        let progress:CGFloat!
         //当前collectionView的index
-        let oldIndex = Int(startOffSet / viewWidth)
+        var oldIndex: Int!
         //下一个collectionView的index
-        var newIndex: Int = oldIndex + (currentOffSet > startOffSet ? 1 : -1)
-        
-        if newIndex < 0 {
-            newIndex = 0
-        }
-        if newIndex >= childViewControllers.count {
-            newIndex = childViewControllers.count - 1
+        var newIndex: Int!
+        if currentOffSet > startOffSet {
+            //左滑
+            progress = currentOffSet / viewWidth - floor(currentOffSet / viewWidth)
+            oldIndex = Int(currentOffSet / viewWidth)
+            newIndex = oldIndex + 1
+            if progress == 0{
+                newIndex = oldIndex
+            }
+            if newIndex == childViewControllers.count {
+                newIndex = childViewControllers.count - 1
+            }
+        }else if currentOffSet < startOffSet{
+            //右滑
+            progress = 1 - (currentOffSet / viewWidth - floor(currentOffSet / viewWidth))
+            newIndex = Int(currentOffSet / viewWidth)
+            oldIndex = newIndex + 1
+            if oldIndex == childViewControllers.count {
+                oldIndex = childViewControllers.count - 1
+            }
+        }else{
+            return
         }
         //调用代理
         self.delegate?.pageContentView(pageContentView: self, progress: progress, oldIndex: oldIndex, newIndex: newIndex)
