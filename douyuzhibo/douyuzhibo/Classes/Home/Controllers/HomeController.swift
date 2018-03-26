@@ -41,6 +41,9 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        NetworkTool.request(url: "https://httpbin.org/get", method: .GET) { (value) in
+            print(value)
+        }
     }
 }
 

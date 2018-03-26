@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+
+target 'douyuzhibo' do
+  use_frameworks!
+
+  pod 'Alamofire'
+
+end
