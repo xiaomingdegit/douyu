@@ -20,9 +20,13 @@ private let cellWidth = (kScreenW - 3 * cellMargin) / 2
 private let cellHeight = cellWidth * 3 / 4
 private let cellLiveHeight = cellWidth * 4 / 3
 
+//循环滚动view的高度
+private let cycleViewHeight:CGFloat = 200
+
 class RecommendController: UICollectionViewController {
     
     private lazy var recommendVM = RecommendViewModels()
+    private lazy var recommendCycel = RecommendCycle(frame: CGRect(x: 0, y: -cycleViewHeight, width: kScreenW, height: cycleViewHeight))
     //定义初始化
     init(){
         //创建并设置布局
@@ -55,10 +59,23 @@ class RecommendController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView?.contentInset = UIEdgeInsetsMake(cycleViewHeight, 0, 0, 0)
+        self.collectionView?.addSubview(recommendCycel)
         //加载数据
-        recommendVM.loadData {
-            self.collectionView?.reloadData()
+        loadData()
+    }
+}
+
+extension RecommendController{
+    func loadData(){
+        //加载数据
+        recommendVM.loadData {[weak self] in
+            //刷新单元格
+            self?.collectionView?.reloadData()
             return
+        }
+        recommendVM.loadCycleData {
+            self.recommendCycel.cycleCellModels = self.recommendVM.cycleCellModels
         }
     }
 }
@@ -75,18 +92,20 @@ extension RecommendController:UICollectionViewDelegateFlowLayout{
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let groupModel = recommendVM.groups[indexPath.section]
+        let roomModel = groupModel.roomModels[indexPath.row]
         //根据section的不同 返回不同的cell
         if indexPath.section == 1 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: liveCellReuseId, for: indexPath) as? CollectionLiveCell else{
                 return UICollectionViewCell()
             }
-            cell.roomModel = recommendVM.groups[indexPath.section].roomModels[indexPath.row]
+            cell.roomModel = roomModel
             return cell
         }else{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: normalCellReuseId, for: indexPath) as? CollectionNormalCell else{
                 return UICollectionViewCell()
             }
-            cell.roomModel = recommendVM.groups[indexPath.section].roomModels[indexPath.row]
+            cell.roomModel = roomModel
             return cell
         }
     }

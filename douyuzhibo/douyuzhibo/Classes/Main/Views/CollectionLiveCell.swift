@@ -25,13 +25,16 @@ class CollectionLiveCell: UICollectionViewCell {
             self.nameLable.text = roomModel.nickname
             
             let onlineNum: String!
-            if roomModel.hn > 9999 {
-                onlineNum = "\(roomModel.hn / 10000)"
+            if roomModel.hn == 0{
+                onlineNumLable.isHidden = true
             }else{
-                onlineNum = "\(roomModel.hn)"
+                if roomModel.hn > 9999 {
+                    onlineNum = "\(roomModel.hn / 10000)万人在线"
+                }else{
+                    onlineNum = "\(roomModel.hn)人"
+                }
+                onlineNumLable.text = onlineNum
             }
-            print(roomModel.hn)
-            onlineNumLable.text = onlineNum
             imageView.kf.setImage(with: URL(string: roomModel.vertical_src))
         }
     }

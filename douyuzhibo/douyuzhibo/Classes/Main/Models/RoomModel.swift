@@ -9,8 +9,11 @@
 import UIKit
 
 class RoomModel: NSObject {
+    //图片
     @objc var vertical_src: String = ""
+    //昵称
     @objc var nickname: String = ""
+    //游戏名
     @objc var game_name: String = ""
     //在线人数
     @objc var hn: Int = 0

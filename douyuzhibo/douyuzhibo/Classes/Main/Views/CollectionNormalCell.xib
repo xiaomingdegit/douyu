@@ -42,7 +42,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="斗鱼哈哈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3V-8J-UPN">
-                        <rect key="frame" x="0.0" y="118.5" width="45" height="13.5"/>
+                        <rect key="frame" x="5" y="118.5" width="45" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="dDK-f3-qez" secondAttribute="trailing" constant="5" id="0ZZ-PS-rID"/>
-                <constraint firstItem="H3V-8J-UPN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2sB-a0-xym"/>
+                <constraint firstItem="H3V-8J-UPN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="2sB-a0-xym"/>
                 <constraint firstItem="KjS-4M-xsC" firstAttribute="leading" secondItem="4fO-HH-Ng8" secondAttribute="trailing" constant="5" id="4C0-tn-ar3"/>
                 <constraint firstItem="wCr-ns-8wC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Lod-tt-ddi"/>
                 <constraint firstAttribute="trailing" secondItem="KjS-4M-xsC" secondAttribute="trailing" constant="5" id="RmK-fO-d9P"/>

@@ -13,10 +13,14 @@ class RecommendViewModels {
     lazy var groups = [GroupModel]()
     lazy var liveModel = GroupModel()
     lazy var hotModel = GroupModel()
+    
+    lazy var cycleCellModels = [CycleCellModel]()
+    
 }
 
 //请求数据
 extension RecommendViewModels{
+    //请求推荐数据
     func loadData(finished: @escaping ()->()){
         let group = DispatchGroup()
         group.enter()
@@ -43,7 +47,6 @@ extension RecommendViewModels{
         
         //加载游戏数据
         group.enter()
-        //http://capi.douyucdn.cn/api/v1/getHotCate?limit:4&offset:0&time:1522113708.1545
         NetworkTool.request(url: "http://capi.douyucdn.cn/api/v1/getHotCate", method: .GET, parameters: ["limit": 4,"offset": 0,"time": NSDate.currentTime()]) { (response) in
             guard let responseData = response["data"] as? [[String : Any]] else{
                 return
@@ -57,4 +60,15 @@ extension RecommendViewModels{
             finished()
         }
     }
+    
+    func loadCycleData(finished: @escaping ()->()){
+        NetworkTool.request(url: "http://www.douyutv.com/api/v1/slide/6", method: .GET, parameters: ["version": 2.300]) { (response) in
+            guard let responseData = response["data"] as? [[String: Any]] else{
+                return
+            }
+            self.cycleCellModels = CycleCellModel.cycelCellModel(infos: responseData)
+            finished()
+        }
+    }
+    
 }
