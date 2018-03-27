@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="247" height="244"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvd-2n-g0a">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvd-2n-g0a">
                         <rect key="frame" x="0.0" y="224" width="49" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="eF9-Yc-RBm"/>
@@ -80,6 +80,12 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="247" height="244"/>
+            <connections>
+                <outlet property="imageView" destination="J1b-uJ-wmA" id="mKO-VQ-PaX"/>
+                <outlet property="localLable" destination="tvd-2n-g0a" id="gzD-fU-lbV"/>
+                <outlet property="nameLable" destination="YZm-UB-LJY" id="Es2-5M-kSn"/>
+                <outlet property="onlineNumLable" destination="kTC-Uz-fG4" id="apT-AL-zek"/>
+            </connections>
             <point key="canvasLocation" x="51.5" y="69"/>
         </collectionViewCell>
     </objects>

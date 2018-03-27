@@ -21,6 +21,8 @@ private let cellHeight = cellWidth * 3 / 4
 private let cellLiveHeight = cellWidth * 4 / 3
 
 class RecommendController: UICollectionViewController {
+    
+    private lazy var recommendVM = RecommendViewModels()
     //定义初始化
     init(){
         //创建并设置布局
@@ -46,7 +48,6 @@ class RecommendController: UICollectionViewController {
         collectionView?.register(UINib(nibName: "CollectionLiveCell", bundle: nil), forCellWithReuseIdentifier: liveCellReuseId)
         //注册section头
         collectionView?.register(UINib(nibName: "CollectionHeadView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headCellReuseId)
-        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,37 +55,50 @@ class RecommendController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //加载数据
+        recommendVM.loadData {
+            self.collectionView?.reloadData()
+            return
+        }
     }
 }
 
 extension RecommendController:UICollectionViewDelegateFlowLayout{
     //返回组数
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return recommendVM.groups.count
     }
     
-    //返回每组cell的大小
+    //返回每组的cell
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return recommendVM.groups[section].roomModels.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell: UICollectionViewCell!
         //根据section的不同 返回不同的cell
         if indexPath.section == 1 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: liveCellReuseId, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: liveCellReuseId, for: indexPath) as? CollectionLiveCell else{
+                return UICollectionViewCell()
+            }
+            cell.roomModel = recommendVM.groups[indexPath.section].roomModels[indexPath.row]
+            return cell
         }else{
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: normalCellReuseId, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: normalCellReuseId, for: indexPath) as? CollectionNormalCell else{
+                return UICollectionViewCell()
+            }
+            cell.roomModel = recommendVM.groups[indexPath.section].roomModels[indexPath.row]
+            return cell
         }
-        return cell
     }
-    
+    //返回sectionHeadCell
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         //放回sectionHead
-        let head = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headCellReuseId, for: indexPath)
-        return head
+        let head = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headCellReuseId, for: indexPath) as? CollectionHeadView
+        head?.groupModel = recommendVM.groups[indexPath.section]
+        return head!
     }
     
+    //返回每组cell的大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         //根据section不同 返回不同cell的尺寸
         if indexPath.section == 1{

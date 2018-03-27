@@ -47,7 +47,7 @@
                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDK-f3-qez">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDK-f3-qez">
                         <rect key="frame" x="171" y="117" width="64" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="666在线" image="Image_online"/>
@@ -71,6 +71,12 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="240" height="157"/>
+            <connections>
+                <outlet property="gameNameLable" destination="H3V-8J-UPN" id="bRc-fM-eld"/>
+                <outlet property="imageView" destination="wCr-ns-8wC" id="Vnh-PC-IrW"/>
+                <outlet property="nameLable" destination="KjS-4M-xsC" id="bkQ-LN-t9i"/>
+                <outlet property="onlineNumLable" destination="dDK-f3-qez" id="5to-g4-j6h"/>
+            </connections>
             <point key="canvasLocation" x="14" y="38.5"/>
         </collectionViewCell>
     </objects>

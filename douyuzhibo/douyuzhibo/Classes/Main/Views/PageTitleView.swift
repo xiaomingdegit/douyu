@@ -105,6 +105,10 @@ extension PageTitleView{
         guard let currentlable = ges.view as? UILabel else{
             return
         }
+        //如果点击的按钮是选中的按钮，就直接返回
+        if currentlable.tag == selectLableIndex {
+            return
+        }
         currentlable.textColor = UIColor(red: kSelectColor.red, green: kSelectColor.green, blue: kSelectColor.blue, alpha: 1)
         //移除之前选中lable颜色
         let oldLable = lables[selectLableIndex]
@@ -126,7 +130,6 @@ extension PageTitleView{
     func changeSelectTitle(progress: CGFloat, oldIndex: Int, newIndex: Int){
         //将当前选中lable设置为新的lable
         selectLableIndex = newIndex
-        print(selectLableIndex)
         //获取旧的lable
         let oldLable = lables[oldIndex]
         //获取新的lable

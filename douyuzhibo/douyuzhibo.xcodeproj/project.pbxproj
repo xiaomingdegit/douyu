@@ -25,6 +25,10 @@
 		013CBED9206284BE00143BB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CBEC7206284BE00143BB5 /* AppDelegate.swift */; };
 		013CBEDA206284BE00143BB5 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CBECC206284BE00143BB5 /* ProfileController.swift */; };
 		013CBEDC206284BE00143BB5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CBED5206284BE00143BB5 /* TabBarController.swift */; };
+		01487860206910A20069BB5D /* RecommendViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148785F206910A20069BB5D /* RecommendViewModels.swift */; };
+		01487862206911E90069BB5D /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01487861206911E90069BB5D /* NSDate+Extension.swift */; };
+		01487864206919BC0069BB5D /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01487863206919BC0069BB5D /* RoomModel.swift */; };
+		0148786620691C5A0069BB5D /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148786520691C5A0069BB5D /* GroupModel.swift */; };
 		01496DF52062747000F30701 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01496DF32062747000F30701 /* LaunchScreen.storyboard */; };
 		014BF3A5206285A200B09556 /* LiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BF3A3206285A100B09556 /* LiveController.swift */; };
 		014BF3A920628BCB00B09556 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BF3A820628BCB00B09556 /* Bundle+Extension.swift */; };
@@ -52,6 +56,10 @@
 		013CBEC7206284BE00143BB5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013CBECC206284BE00143BB5 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		013CBED5206284BE00143BB5 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0148785F206910A20069BB5D /* RecommendViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewModels.swift; sourceTree = "<group>"; };
+		01487861206911E90069BB5D /* NSDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		01487863206919BC0069BB5D /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
+		0148786520691C5A0069BB5D /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		01496DE72062746F00F30701 /* douyuzhibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = douyuzhibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01496DF42062747000F30701 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01496E1420627FB500F30701 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +112,7 @@
 		013CBEBB206284BE00143BB5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0148785F206910A20069BB5D /* RecommendViewModels.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -242,6 +251,8 @@
 		013CBED3206284BE00143BB5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				01487863206919BC0069BB5D /* RoomModel.swift */,
+				0148786520691C5A0069BB5D /* GroupModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,6 +364,7 @@
 				014BF3A820628BCB00B09556 /* Bundle+Extension.swift */,
 				01203F802062A1A50079973F /* UIBarButtonItem+Extension.swift */,
 				013989E62063DD400052C592 /* UIColor+Extension.swift */,
+				01487861206911E90069BB5D /* NSDate+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -456,10 +468,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-douyuzhibo/Pods-douyuzhibo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -514,13 +528,17 @@
 				013989E72063DD400052C592 /* UIColor+Extension.swift in Sources */,
 				014BF3A920628BCB00B09556 /* Bundle+Extension.swift in Sources */,
 				013CBED8206284BE00143BB5 /* FollowController.swift in Sources */,
+				0148786620691C5A0069BB5D /* GroupModel.swift in Sources */,
 				0168B3152065F8AB00A22BC5 /* RecommendController.swift in Sources */,
 				017475B52068954600965FC0 /* NetworkTool.swift in Sources */,
 				013CBEDC206284BE00143BB5 /* TabBarController.swift in Sources */,
 				014BF3A5206285A200B09556 /* LiveController.swift in Sources */,
+				01487864206919BC0069BB5D /* RoomModel.swift in Sources */,
 				011C8D6120639AD200CD856E /* PageTitleView.swift in Sources */,
 				013CBED7206284BE00143BB5 /* HomeController.swift in Sources */,
+				01487862206911E90069BB5D /* NSDate+Extension.swift in Sources */,
 				011C8D632063A55200CD856E /* Common.swift in Sources */,
+				01487860206910A20069BB5D /* RecommendViewModels.swift in Sources */,
 				013CBEDA206284BE00143BB5 /* ProfileController.swift in Sources */,
 				012A5FFA206767AE00934F8E /* CollectionLiveCell.swift in Sources */,
 			);

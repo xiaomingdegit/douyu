@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CollectionHeadView: UICollectionReusableView {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var headIconView: NSLayoutConstraint!
+    
+    @IBOutlet weak var headTitleView: UILabel!
+    @IBOutlet weak var iconView: UIImageView!
+    
+    var groupModel: GroupModel?{
+        didSet{
+            guard let groupModel = groupModel else {
+                return
+            }
+            headTitleView.text = groupModel.tag_name
+            if groupModel.small_icon_url == "" {
+                iconView.image = UIImage(named: "home_header_normal")
+            }else{
+                iconView.kf.setImage(with: URL(string: groupModel.small_icon_url))
+            }
+        }
     }
     
 }

@@ -4,5 +4,5 @@ target 'douyuzhibo' do
   use_frameworks!
 
   pod 'Alamofire'
-
+  pod 'Kingfisher'
 end

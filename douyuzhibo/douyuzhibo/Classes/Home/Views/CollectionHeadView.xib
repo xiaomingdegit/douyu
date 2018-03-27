@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="CollectionHeadView" customModule="douyuzhibo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUd-e9-IxV">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUd-e9-IxV" customClass="CollectionHeadView" customModule="douyuzhibo" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="10"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
@@ -24,14 +24,14 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_header_phone" translatesAutoresizingMaskIntoConstraints="NO" id="91h-8E-m1K">
-                    <rect key="frame" x="0.0" y="15" width="24" height="22"/>
+                    <rect key="frame" x="10" y="15" width="24" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="24" id="2cM-Bs-rRe"/>
                         <constraint firstAttribute="height" constant="22" id="h0Y-5s-ote"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZW-h0-ObT">
-                    <rect key="frame" x="29" y="16.5" width="33" height="19.5"/>
+                    <rect key="frame" x="39" y="16.5" width="33" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -52,9 +52,14 @@
                 <constraint firstItem="H3L-AL-UWw" firstAttribute="centerY" secondItem="ZZW-h0-ObT" secondAttribute="centerY" id="eGj-h6-UDN"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="oUd-e9-IxV" secondAttribute="trailing" id="gv6-aQ-CPZ"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="H3L-AL-UWw" secondAttribute="trailing" constant="10" id="lTo-Wd-0Vq"/>
-                <constraint firstItem="91h-8E-m1K" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="wWR-F1-1l4"/>
+                <constraint firstItem="91h-8E-m1K" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="10" id="wWR-F1-1l4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="headIconView" destination="FG9-oz-5eU" id="oYq-6m-3Hk"/>
+                <outlet property="headTitleView" destination="ZZW-h0-ObT" id="eqG-Et-CnB"/>
+                <outlet property="iconView" destination="91h-8E-m1K" id="sHj-pu-9pV"/>
+            </connections>
         </collectionReusableView>
     </objects>
     <resources>

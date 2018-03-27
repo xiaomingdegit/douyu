@@ -10,11 +10,32 @@ import UIKit
 
 class CollectionLiveCell: UICollectionViewCell {
 
+    @IBOutlet weak var localLable: UIButton!
+    @IBOutlet weak var nameLable: UILabel!
+    @IBOutlet weak var onlineNumLable: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var roomModel:RoomModel?{
+        didSet{
+            guard let roomModel = roomModel else {
+                return
+            }
+            self.localLable.setTitle(roomModel.anchor_city, for: .normal)
+            
+            self.nameLable.text = roomModel.nickname
+            
+            let onlineNum: String!
+            if roomModel.hn > 9999 {
+                onlineNum = "\(roomModel.hn / 10000)"
+            }else{
+                onlineNum = "\(roomModel.hn)"
+            }
+            print(roomModel.hn)
+            onlineNumLable.text = onlineNum
+            imageView.kf.setImage(with: URL(string: roomModel.vertical_src))
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//        self.contentView.layer.cornerRadius = 5
-//        self.contentView.layer.masksToBounds = true
     }
-
 }
