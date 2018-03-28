@@ -12,16 +12,16 @@ class RecommendGameCell: UICollectionViewCell {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var titleLable: UILabel!
     
-    var groupModel: GroupModel?{
+    var gameModel: GameModel?{
         didSet{
-            guard let groupModel = groupModel else {
+            guard let gameModel = gameModel else {
                 return
             }
-            titleLable.text = groupModel.tag_name
-            if groupModel.tag_name == "更多" {
+            titleLable.text = gameModel.tag_name
+            if gameModel.tag_name == "更多" {
                 iconView.image = UIImage(named: "home_more_btn")
             }else{
-                iconView.kf.setImage(with: URL(string: groupModel.small_icon_url), placeholder:UIImage(named: "home_header_normal"))
+                iconView.kf.setImage(with: URL(string: gameModel.small_icon_url), placeholder:UIImage(named: "home_header_normal"))
             }
         }
     }

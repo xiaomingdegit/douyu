@@ -20,16 +20,20 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVe-u4-hn1">
-                        <rect key="frame" x="30.5" y="80" width="35.5" height="20"/>
+                        <rect key="frame" x="30.5" y="70" width="35.5" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="gz9-aK-oGb"/>
+                            <constraint firstAttribute="height" constant="20" id="dq2-3H-Ote"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pmi-zC-AU0">
-                        <rect key="frame" x="10" y="10" width="77" height="70"/>
+                        <rect key="frame" x="23.5" y="15" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="V8e-j2-k2f"/>
+                            <constraint firstAttribute="height" constant="50" id="reZ-e9-960"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="15"/>
@@ -39,14 +43,12 @@
                     </imageView>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.98039215690000003" green="0.97647058819999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="RVe-u4-hn1" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8Me-SA-qs9"/>
-                <constraint firstAttribute="trailing" secondItem="Pmi-zC-AU0" secondAttribute="trailing" constant="10" id="Az1-ET-QHw"/>
-                <constraint firstItem="Pmi-zC-AU0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Vvp-8c-m3F"/>
-                <constraint firstItem="Pmi-zC-AU0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="hNQ-g7-81A"/>
-                <constraint firstItem="RVe-u4-hn1" firstAttribute="top" secondItem="Pmi-zC-AU0" secondAttribute="bottom" id="iFr-SO-KFr"/>
-                <constraint firstAttribute="bottom" secondItem="RVe-u4-hn1" secondAttribute="bottom" id="xA6-Tq-iG1"/>
+                <constraint firstItem="RVe-u4-hn1" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="NwU-Ot-cOD"/>
+                <constraint firstItem="Pmi-zC-AU0" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="RtQ-gM-b2a"/>
+                <constraint firstItem="Pmi-zC-AU0" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-10" id="tq2-wj-orw"/>
+                <constraint firstItem="RVe-u4-hn1" firstAttribute="top" secondItem="Pmi-zC-AU0" secondAttribute="bottom" constant="5" id="z15-gI-8Di"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="97" height="100"/>

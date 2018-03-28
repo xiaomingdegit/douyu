@@ -25,9 +25,13 @@ class HomeController: UIViewController {
         let rect = CGRect(x: 0, y:pageContentViewY , width: kScreenW, height: kScreenH - pageContentViewY - kTabbarH)
         
         var viewControllers = [UIViewController]()
-        var viewController = RecommendController()
-        viewControllers.append(viewController)
-        for _ in 0..<3 {
+        var recommendController = RecommendController()
+        viewControllers.append(recommendController)
+        
+        var gameController = GameController()
+        viewControllers.append(gameController)
+        
+        for _ in 0..<2 {
             let viewController = UIViewController()
             viewController.view.backgroundColor = UIColor.randomColor
             viewControllers.append(viewController)

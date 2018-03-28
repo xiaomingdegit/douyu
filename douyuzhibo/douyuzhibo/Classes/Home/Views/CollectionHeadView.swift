@@ -16,6 +16,8 @@ class CollectionHeadView: UICollectionReusableView {
     @IBOutlet weak var headTitleView: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     
+    @IBOutlet weak var moreButton: UILabel!
+    
     var groupModel: GroupModel?{
         didSet{
             guard let groupModel = groupModel else {
@@ -25,5 +27,10 @@ class CollectionHeadView: UICollectionReusableView {
             iconView.kf.setImage(with: URL(string: groupModel.small_icon_url), placeholder: UIImage(named: "home_header_normal"))
         }
     }
-    
+}
+
+extension CollectionHeadView{
+    static func collectionHeadView() ->CollectionHeadView{
+        return Bundle.main.loadNibNamed("CollectionHeadView", owner: nil, options: nil)?.first as! CollectionHeadView
+    }
 }

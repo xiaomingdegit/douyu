@@ -16,12 +16,13 @@ class RecommendViewModels {
     
     lazy var cycleCellModels = [CycleCellModel]()
     
+    lazy var gameModels = [GameModel]()
 }
 
 //请求数据
 extension RecommendViewModels{
     //请求推荐数据
-    func loadData(finished: @escaping ()->()){
+     func loadData(finished: @escaping ()->()){
         let group = DispatchGroup()
         group.enter()
         //加载热门数据
@@ -52,6 +53,7 @@ extension RecommendViewModels{
                 return
             }
             self.groups = GroupModel.groupModels(array: responseData)
+            self.gameModels = GameModel.gameModels(infos: responseData)
             group.leave()
         }
         group.notify(queue: DispatchQueue.main) {

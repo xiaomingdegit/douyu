@@ -19,9 +19,11 @@ class RecommendCycle: UIView {
             //刷新数据
             collectionView.reloadData()
             pageControl.numberOfPages = cycleCellModels.count
-//            //滚动到中间位置 无限滚动
-//            let indexPath = IndexPath(row: cycleCellModels.count * 5, section: 0)
-//            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            DispatchQueue.main.async {
+                //滚动到中间位置 无限滚动
+                let indexPath = IndexPath(row: self.cycleCellModels.count * 5, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+            }
         }
     }
     

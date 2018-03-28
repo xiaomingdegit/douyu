@@ -13,13 +13,11 @@ private let cellId = "cellId"
 class RecommedGame: UIView {
     private var collectionView: UICollectionView!
     
-    var groups: [GroupModel] = [GroupModel](){
+    var gameModels: [GameModel] = [GameModel](){
         didSet{
-            groups.removeFirst()
-            groups.removeFirst()
-            let groupModel = GroupModel()
-            groupModel.tag_name = "更多"
-            groups.append(groupModel)
+            let gameModel = GameModel()
+            gameModel.tag_name = "更多"
+            gameModels.append(gameModel)
             collectionView.reloadData()
         }
     }
@@ -40,7 +38,7 @@ class RecommedGame: UIView {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
-        let collectionFrame = CGRect(x: 0, y: 0, width: frame.size.width - 10, height: frame.size.height)
+        let collectionFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
         let collectionView = UICollectionView(frame: collectionFrame, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor.white
@@ -53,12 +51,12 @@ class RecommedGame: UIView {
 
 extension RecommedGame: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return groups.count
+        return gameModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RecommendGameCell
-        cell.groupModel = groups[indexPath.row]
+        cell.gameModel = gameModels[indexPath.row]
         return cell
     }
 }

@@ -84,7 +84,7 @@ extension RecommendController{
     func loadData(){
         //加载推荐数据
         recommendVM.loadData {
-            self.recommendGame.groups = self.recommendVM.groups
+            self.recommendGame.gameModels = self.recommendVM.gameModels
             //刷新单元格
             self.collectionView?.reloadData()
             return
