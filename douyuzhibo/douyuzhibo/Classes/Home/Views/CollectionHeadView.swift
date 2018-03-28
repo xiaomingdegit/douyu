@@ -22,11 +22,7 @@ class CollectionHeadView: UICollectionReusableView {
                 return
             }
             headTitleView.text = groupModel.tag_name
-            if groupModel.small_icon_url == "" {
-                iconView.image = UIImage(named: "home_header_normal")
-            }else{
-                iconView.kf.setImage(with: URL(string: groupModel.small_icon_url))
-            }
+            iconView.kf.setImage(with: URL(string: groupModel.small_icon_url), placeholder: UIImage(named: "home_header_normal"))
         }
     }
     

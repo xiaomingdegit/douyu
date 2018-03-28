@@ -21,12 +21,17 @@ private let cellHeight = cellWidth * 3 / 4
 private let cellLiveHeight = cellWidth * 4 / 3
 
 //循环滚动view的高度
-private let cycleViewHeight:CGFloat = 200
+private let cycleViewHeight: CGFloat = 200
+//gameView的高度
+private let gameViewHeight: CGFloat = 80
 
 class RecommendController: UICollectionViewController {
     
     private lazy var recommendVM = RecommendViewModels()
-    private lazy var recommendCycel = RecommendCycle(frame: CGRect(x: 0, y: -cycleViewHeight, width: kScreenW, height: cycleViewHeight))
+    //循环滚动View
+    private lazy var recommendCycel = RecommendCycle(frame: CGRect(x: 0, y: -(cycleViewHeight + gameViewHeight), width: kScreenW, height: cycleViewHeight))
+    //gameView
+    private lazy var recommendGame = RecommedGame(frame: CGRect(x: 0, y: -gameViewHeight, width: kScreenW, height: gameViewHeight))
     //定义初始化
     init(){
         //创建并设置布局
@@ -59,22 +64,34 @@ class RecommendController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView?.contentInset = UIEdgeInsetsMake(cycleViewHeight, 0, 0, 0)
-        self.collectionView?.addSubview(recommendCycel)
+        //加载UI
+        setupUI()
         //加载数据
         loadData()
     }
 }
 
 extension RecommendController{
+    func setupUI(){
+        //使collectionView向下偏移 为循环滚动View留出空间
+        self.collectionView?.contentInset = UIEdgeInsetsMake(cycleViewHeight + gameViewHeight, 0, 0, 0)
+        //将循环滚动View添加到collectionView上
+        self.collectionView?.addSubview(recommendCycel)
+        //将gameView添加到collectionView上
+        self.collectionView?.addSubview(recommendGame)
+    }
+    
     func loadData(){
-        //加载数据
-        recommendVM.loadData {[weak self] in
+        //加载推荐数据
+        recommendVM.loadData {
+            self.recommendGame.groups = self.recommendVM.groups
             //刷新单元格
-            self?.collectionView?.reloadData()
+            self.collectionView?.reloadData()
             return
         }
+        //加载循环滚动界面数据
         recommendVM.loadCycleData {
+            //将加载到的数据赋值给recommendCycel
             self.recommendCycel.cycleCellModels = self.recommendVM.cycleCellModels
         }
     }

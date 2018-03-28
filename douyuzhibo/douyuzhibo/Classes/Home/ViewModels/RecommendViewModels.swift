@@ -62,6 +62,7 @@ extension RecommendViewModels{
     }
     
     func loadCycleData(finished: @escaping ()->()){
+        //加载循环滚动界面
         NetworkTool.request(url: "http://www.douyutv.com/api/v1/slide/6", method: .GET, parameters: ["version": 2.300]) { (response) in
             guard let responseData = response["data"] as? [[String: Any]] else{
                 return
